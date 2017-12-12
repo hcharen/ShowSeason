@@ -1,0 +1,9 @@
+<h1>EDIT AN EVENT!</h1>
+
+
+<%= simple_form_for @event do |f| %>
+  <%= f.input :date %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "Cancel", event_path(@event) %>

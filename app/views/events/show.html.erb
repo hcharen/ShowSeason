@@ -1,0 +1,13 @@
+<h1>INDIVIDUAL EVENT SHOW PAGE</h1>
+
+<hr>
+
+<%= @event.date %>
+
+<hr>
+
+<ul><%= link_to "Event Index", events_path %></ul>
+
+<ul><%= link_to "Edit Post", edit_event_path(@event) %></ul>
+
+  <ul><%= link_to "Delete Event", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %></ul>
