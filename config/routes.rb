@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :dashboard do
+    authenticated :student do
+      resources :events, module: "student", :only => [:show, :index]
+    end
+    authenticated :instructor do
+      resources :events, module: "instructor"
+    end
+    root to: "dashboard/dashboard#index"
+  end
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   devise_for :students
   devise_for :instructors
@@ -8,7 +18,7 @@ Rails.application.routes.draw do
   resources :students
   resources :instructors
 
+  root "dashboard/dashboard#index"
 
 
-  root 'events#index'
 end

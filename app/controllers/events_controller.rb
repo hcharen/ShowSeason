@@ -1,18 +1,24 @@
 class EventsController < ApplicationController
   before_action :call_event
+  before_action :owned_event
 
   def index
     @events = Event.all
   end
 
   def new
-    @event = Event.new
+    @event = current_user.events.new
   end
 
-  def create
-    @event = Event.create(event_params)
-    redirect_to events_path
-  end
+
+    def create
+      @event = current_user.events.new(event_params)
+      if @event.save
+        redirect_to @event
+      else
+        render 'new'
+      end
+    end
 
   def show
 
@@ -42,6 +48,12 @@ private
 
   def call_event
     @event = Event.find_by(params[:id])
+  end
+
+  def owned_event
+    unless current_user == @event.user
+      redirect_to root_path
+    end
   end
 
 end
