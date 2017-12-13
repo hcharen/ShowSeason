@@ -1,9 +1,5 @@
 <h1>THIS IS THE EVENT INDEX</h1>
-<% if user_signed_in? %>
-<% if current_user.user_role == "instructor" %>
-<%= link_to "New Event", new_event_path %>
-<% end %>
-<% end %>
+
 
 <hr>
 <% @events.each do |event| %>
